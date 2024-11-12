@@ -6,13 +6,13 @@ endif
 MIGRATE_PATH = ./scripts/migrations
 DATABASE_URL = ${DB_SOURCE}
 
+
 format:
-	@echo "Applying go fmt to the project"
+	@echo "apply go fmt to the project"
 	go fmt ./...
 
-
 vet:
-	@echo "Checking for errors with vet"
+	@echo "check errors by vet"
 	go vet ./...
 
 dockerup:
@@ -42,9 +42,11 @@ migrate-drop:
 	@echo "Dropping all migrations..."
 	migrate -path ${MIGRATE_PATH} -database "${DATABASE_URL}" drop -f
 
-# Run the HTTP server
 http:
 	go run . http
 
-# Declare targets that are not files
-.PHONY: format vet dockerup dockerdown migrate-create migrate-up migrate-down migrate-drop http
+test:
+	go test -v -cover ./...
+
+
+.PHONY: format vet dockerup dockerdown migrate-up migrate-down migrate-drop http test
