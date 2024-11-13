@@ -5,4 +5,4 @@ import (
 	"os"
 )
 
-var Logger = slog.New(slog.NewTextHandler(os.Stdout, nil))
+var Logger = slog.New(slog.NewJSONHandler(os.Stdout, nil))
