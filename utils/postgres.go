@@ -5,6 +5,7 @@ import (
 	"database/sql"
 	"fmt"
 	_ "github.com/lib/pq"
+	"github.com/saleh-ghazimoradi/GoGarage/logger"
 	"time"
 )
 
@@ -43,7 +44,7 @@ func PostConnection(cfg PostgresConfig) (*sql.DB, error) {
 	if err := db.PingContext(ctx); err != nil {
 		return nil, fmt.Errorf("error pinging postgres: %w", err)
 	}
-
+	logger.Logger.Info("Connection to postgresql established")
 	return db, nil
 }
 
