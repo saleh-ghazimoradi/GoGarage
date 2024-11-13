@@ -5,31 +5,31 @@ import (
 	"net/http"
 )
 
-func internalServerError(w http.ResponseWriter, r *http.Request) {
+func internalServerError(w http.ResponseWriter, r *http.Request, err error) {
 	if err := writeJSONError(w, http.StatusInternalServerError, "the server encountered an error"); err != nil {
 		logger.Logger.Error("internal server error", "method", r.Method, "path", r.URL.Path, "writeJSONError", err.Error())
 	}
 }
 
-func badRequestResponse(w http.ResponseWriter, r *http.Request) {
+func badRequestResponse(w http.ResponseWriter, r *http.Request, err error) {
 	if err := writeJSONError(w, http.StatusBadRequest, "the request URL is invalid"); err != nil {
 		logger.Logger.Warn("bad request", "method", r.Method, "path", r.URL.Path, "err", err.Error())
 	}
 }
 
-func notFoundResponse(w http.ResponseWriter, r *http.Request) {
+func notFoundResponse(w http.ResponseWriter, r *http.Request, err error) {
 	if err := writeJSONError(w, http.StatusNotFound, "the requested resource was not found"); err != nil {
 		logger.Logger.Warn("not found", "method", r.Method, "path", r.URL.Path, "err", err.Error())
 	}
 }
 
-func conflictResponse(w http.ResponseWriter, r *http.Request) {
+func conflictResponse(w http.ResponseWriter, r *http.Request, err error) {
 	if err := writeJSONError(w, http.StatusConflict, "the request URL is conflict"); err != nil {
 		logger.Logger.Error("conflict", "method", r.Method, "path", r.URL.Path, "err", err.Error())
 	}
 }
 
-func unauthorizedErrorResponse(w http.ResponseWriter, r *http.Request) {
+func unauthorizedErrorResponse(w http.ResponseWriter, r *http.Request, err error) {
 	if err := writeJSONError(w, http.StatusUnauthorized, "the request URL is unauthorized"); err != nil {
 		logger.Logger.Warn("unauthorized", "method", r.Method, "path", r.URL.Path, "err", err.Error())
 	}
