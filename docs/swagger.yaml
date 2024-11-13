@@ -1,0 +1,21 @@
+info:
+  contact: {}
+paths:
+  /v1/healthcheck:
+    get:
+      consumes:
+      - application/json
+      description: Returns the health status, environment, and version of the application
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+          schema:
+            additionalProperties:
+              type: string
+            type: object
+      summary: Health Check
+      tags:
+      - Health
+swagger: "2.0"
