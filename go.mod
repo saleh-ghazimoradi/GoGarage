@@ -3,6 +3,8 @@ module github.com/saleh-ghazimoradi/GoGarage
 go 1.23.2
 
 require (
+	github.com/julienschmidt/httprouter v1.3.0
+	github.com/lib/pq v1.10.9
 	github.com/spf13/cobra v1.8.1
 	github.com/spf13/viper v1.19.0
 )
