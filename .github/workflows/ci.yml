@@ -26,19 +26,6 @@ jobs:
           --health-timeout 5s
           --health-retries 5
 
-      redis:
-        image: redis:6.2-alpine
-        env:
-          REDIS_PASSWORD: ${{ secrets.REDIS_PASSWORD }}
-        ports:
-          - 6376:6379
-        options: >-
-          --health-cmd "redis-cli ping || exit 1"
-          --health-interval 10s
-          --health-timeout 5s
-          --health-retries 5
-        command: [ "redis-server", "--requirepass", "${REDIS_PASSWORD}" ]
-
     steps:
       - name: Check out code into the Go module directory
         uses: actions/checkout@v4
