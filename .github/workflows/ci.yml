@@ -37,12 +37,7 @@ jobs:
           --health-interval 10s
           --health-timeout 5s
           --health-retries 5
-        command: [
-          "redis-server",
-          "--save", "60", "1",
-          "--loglevel", "warning",
-          "--requirepass", "${{ secrets.REDIS_PASSWORD }}"
-        ]
+        entrypoint: [ "redis-server", "--save", "60", "1", "--loglevel", "warning", "--requirepass", "${{ secrets.REDIS_PASSWORD }}" ]
 
     steps:
       - name: Check out code into the Go module directory
