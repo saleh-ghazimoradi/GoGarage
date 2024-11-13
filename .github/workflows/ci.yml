@@ -37,8 +37,7 @@ jobs:
           --health-interval 10s
           --health-timeout 5s
           --health-retries 5
-        environment:
-          - REDIS_PASSWORD=${{ secrets.REDIS_PASSWORD }}
+        command: [ "redis-server", "--requirepass", "${{ secrets.REDIS_PASSWORD }}" ]
 
     steps:
       - name: Check out code into the Go module directory
