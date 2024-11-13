@@ -5,12 +5,19 @@ paths:
     get:
       consumes:
       - application/json
-      description: Returns the health status, environment, and version of the application
+      description: Returns the health status, environment, and version of the application,
+        along with failure details if needed
       produces:
       - application/json
       responses:
         "200":
           description: OK
+          schema:
+            additionalProperties:
+              type: string
+            type: object
+        "500":
+          description: Internal Server Error
           schema:
             additionalProperties:
               type: string

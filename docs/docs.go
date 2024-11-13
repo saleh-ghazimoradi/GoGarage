@@ -17,7 +17,7 @@ const docTemplate = `{
     "paths": {
         "/v1/healthcheck": {
             "get": {
-                "description": "Returns the health status, environment, and version of the application",
+                "description": "Returns the health status, environment, and version of the application, along with failure details if needed",
                 "consumes": [
                     "application/json"
                 ],
@@ -31,6 +31,15 @@ const docTemplate = `{
                 "responses": {
                     "200": {
                         "description": "OK",
+                        "schema": {
+                            "type": "object",
+                            "additionalProperties": {
+                                "type": "string"
+                            }
+                        }
+                    },
+                    "500": {
+                        "description": "Internal Server Error",
                         "schema": {
                             "type": "object",
                             "additionalProperties": {
